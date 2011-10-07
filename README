@@ -3,4 +3,12 @@ It's released under GPLv3 License. Please refer to the LICENSE file for more det
 
 Currently it supports the following functionality.
 
-1 Freehand drawing with text support.
+1. Freehand drawing with markers with ability to select color and marker size.
+
+2. Ability to erase entire board or use an eraser where size is selectable.
+
+3. Ability to type text, select font and front attributes.
+
+4. Ability to undo a single draw event using ctrl-z or multiple draw events using eraser tool box.
+
+5. Custom cursor indicates brush size and color (for eraser, size with gray).
