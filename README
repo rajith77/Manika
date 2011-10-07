@@ -1,0 +1,6 @@
+Manika is a Java based white board application.
+It's released under GPLv3 License. Please refer to the LICENSE file for more details.
+
+Currently it supports the following functionality.
+
+1 Freehand drawing with text support.
