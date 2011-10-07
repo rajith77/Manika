@@ -1,0 +1,48 @@
+<project name="Manika" default="dist" basedir=".">
+    <description>
+        Build Manika source
+    </description>
+  <!-- set global properties for this build -->
+  <property name="version"  value="0.1"/> 
+  <property name="build" location="build"/>
+  <property name="dist"  location="dist"/>
+  <property name="lib"  location="lib"/>
+  <property name="main-class" value="manika.ManikaMain"/>
+
+  <target name="init">    
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="compile" depends="init"
+        description="compile the source " >    
+    <javac srcdir="src" destdir="${build}" target="1.5" source="1.5">
+    </javac>
+  </target>
+
+  <target name="dist" depends="clean,compile"
+        description="generate the distribution" >
+    <delete dir="${dir}"/>
+    <jar jarfile="${dist}/manika-${version}.jar" basedir="${build}">
+       <manifest>
+           <attribute name="Main-Class" value="${main-class}"/>
+       </manifest>
+    </jar>
+    <copy todir="${dist}">
+      <fileset dir="${lib}"/>
+    </copy>
+  </target>
+
+  <target name="run" depends="dist">
+    <java jar="${dist}/manika-${version}.jar" fork="true">
+       <classpath>
+           <pathelement location="${dist}/manika-${version}.jar"/>
+       </classpath>
+    </java>      
+  </target>
+
+  <target name="clean"
+        description="clean up" >
+    <delete dir="${build}"/>   
+  </target>
+</project>
+
