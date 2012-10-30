@@ -150,10 +150,12 @@ public class FreehandDrawingArea extends JPanel implements DrawingArea, MouseLis
     @Override
     public void clear() 
     {
-        Graphics2D g = (Graphics2D)getGraphics();
+        /*Graphics2D g = (Graphics2D)getGraphics();
         Rectangle r = getBounds();
         g.setPaint(BACKGROUND);
-        g.fillRect(r.x,r.y,r.width,r.height);
+        g.fillRect(r.x,r.y,r.width,r.height);*/
+        drawEventStack.removeAllElements();
+        getParent().repaint();
     }
 
     @Override

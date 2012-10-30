@@ -19,15 +19,17 @@
 package manika.standard.whiteboard;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import manika.DrawingArea;
 import manika.Whiteboard;
 import manika.standard.drawingarea.FreehandAndTextDrawingArea;
-import manika.standard.gui.ToolBar;
+import manika.standard.gui.ToolPanel;
 import manika.standard.toolbox.DefaultToolBox;
 import manika.util.Utility;
 
@@ -44,12 +46,13 @@ public class BasicBoard extends JPanel implements Whiteboard
         drawingArea = new FreehandAndTextDrawingArea();
         drawingArea.setPreferredSize(new Dimension(800, 600));
         add(drawingArea);
-        add(getToolBox(),BorderLayout.EAST);
+        add(getToolPanel(),BorderLayout.EAST);
+        setBorder(BorderFactory.createLineBorder(Color.BLACK));
     }
     
-    protected JPanel getToolBox()
+    protected JPanel getToolPanel()
     {
-        ToolBar toolBar = new ToolBar();
+        ToolPanel toolBar = new ToolPanel();
         toolBar.setPreferredSize(new Dimension(180,600));
         toolBar.addToolBox(DefaultToolBox.getModeToolPanel(drawingArea));
         toolBar.addToolBox(DefaultToolBox.getMarkerToolPanel(drawingArea));

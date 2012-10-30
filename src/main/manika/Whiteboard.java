@@ -18,7 +18,16 @@
 
 package manika;
 
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 public interface Whiteboard 
 {
-
+    public String getDescription();
+    
+    public ImageIcon getImageIcon();
+    
+    public JPanel getDisplay();
+    
+    public DrawingArea getDrawingArea();
 }

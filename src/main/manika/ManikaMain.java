@@ -23,23 +23,45 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
+import manika.standard.gui.MainPanel;
+
 
 public class ManikaMain extends JFrame
 {
     private static final long serialVersionUID = -2752973810407272588L;
 
-    public ManikaMain()
+    private static WhiteboardFactory whiteboardFactory;
+    
+    public ManikaMain() throws Exception
     {
+      whiteboardFactory = createWhiteboardFactory();  
       setTitle("White Board");
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      BasicWhiteBoard board = new BasicWhiteBoard();
       setSize(new Dimension(1000,650));
-      add(board);
+      MainPanel p = new MainPanel();
+      p.setPreferredSize(new Dimension(1000,800));
+      add(p);
       pack();
-      setLocationRelativeTo(null);      
+      setLocationRelativeTo(null);
     }
     
-    public static void main(String[] args)
+    private WhiteboardFactory createWhiteboardFactory() throws Exception
+    {
+        @SuppressWarnings("unchecked")
+        Class<WhiteboardFactory> c = 
+            (Class<WhiteboardFactory>) Class
+                .forName(System.getProperty("manika.whiteboard.factory",
+                        "manika.standard.whiteboard.DefaultWhiteboardFactory"));
+        
+        return c.newInstance();
+    }
+    
+    public static WhiteboardFactory getWhiteboardFactory()
+    {
+        return whiteboardFactory;
+    }
+    
+    public static void main(String[] args) throws Exception
     {
         try 
         {
@@ -51,6 +73,7 @@ public class ManikaMain extends JFrame
         {
             e.printStackTrace();
         }
+        
         ManikaMain wb = new ManikaMain();
         wb.setVisible(true);
     }

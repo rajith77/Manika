@@ -19,7 +19,9 @@
 package manika;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics2D;
 
 public interface DrawingArea 
 {
@@ -48,4 +50,8 @@ public interface DrawingArea
     public void setMode(Mode m);    
     
     public void clear();
+    
+    public void draw(Graphics2D g);
+    
+    public Dimension getDimensions();
 }
